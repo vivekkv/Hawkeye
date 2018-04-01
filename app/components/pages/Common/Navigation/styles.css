@@ -1,0 +1,40 @@
+.nav_side_bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 64px;
+  border-right: 1px solid #efefef;
+  padding: 0;
+  background: #fff;
+  width: 100%;
+  max-width: 280px;
+}
+
+.nav_header_act_title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: normal;
+  background-color: #1e78d2;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 20px;
+  color: #fff;
+  display: block;
+  padding-left: 28px;
+  margin: 0;
+}
+
+.nav_header_wel_title {
+  font-size: 16px;
+  padding-left: 24px;
+  color: #676767;
+  margin: 25px 0;
+  display: block;
+  font-weight: bold
+}
+
+@media (max-width: 991px) {
+  .nav_side_bar {
+      display: none
+  }
+}

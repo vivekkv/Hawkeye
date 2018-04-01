@@ -1,0 +1,24 @@
+.info_wrapper {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.info_wrapper img {
+    margin-bottom: 5px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.info_wrapper h6 {
+    color: #717273;
+    font-size: 12px;
+}
+
+.info_wrapper h2 {
+    font-size: 30px;
+    color: #595959;
+}
+
+.ma_container_wrapper {
+    padding-bottom: 80px
+}

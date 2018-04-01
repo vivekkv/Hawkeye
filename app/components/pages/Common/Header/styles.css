@@ -1,0 +1,35 @@
+.icons {
+    position: relative;
+    text-align: right
+}
+
+.icons span {
+    display: inline;
+}
+
+.header {
+    background: #ffffff;
+    padding: 8px;
+    height: 48px;
+    transition: background-color .4s;
+    -webkit-transition: background-color .4s;
+}
+
+.icons span i {
+    color: #6f6969;
+    cursor: pointer;
+    padding: 15px
+}
+
+.icons span i:hover {
+    background: rgba(214, 214, 214, 0.34);
+    border-radius: 50%;
+}
+
+.logo_text {
+    padding: 15px;
+    font-weight: bold;
+    display: block;
+    font-size: 19px;
+    color: #000;
+}

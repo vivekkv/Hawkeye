@@ -1,0 +1,29 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    display: block;
+    background: #26282b;
+    color: #fff;
+    right: 0;
+    left: 0;
+    padding:10px 0;
+}
+
+.footer a {
+    color: #fff
+}
+
+.footer_left {
+    display: block;
+    padding: 18px 0;
+}
+
+.footer_left a {
+    color: #717273;
+    cursor: pointer;
+    margin-left: 15px
+}
+
+.footer_left a:hover {
+    text-decoration: underline
+}

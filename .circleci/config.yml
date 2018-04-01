@@ -1,0 +1,10 @@
+version: 2
+jobs:
+   build:
+     docker:
+       - image: circleci/node:6.10.3
+     steps:
+       - checkout
+       - run: cp -f app/utils/apiConfig.js.staging app/utils/apiConfig.js
+       - run: npm install
+       - run: npm run build

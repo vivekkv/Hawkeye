@@ -1,0 +1,13 @@
+.content_title {
+    padding: 5px;
+    background: #fff;
+    padding-left: 45px;
+    font-size: 18px;
+    color: #5a5959;
+    border-top: 1px solid #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.icon {
+    margin-right: 5px
+}

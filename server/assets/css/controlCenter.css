@@ -1,0 +1,230 @@
+html {
+    background: #000;
+    background: gray url(https://ak3.picdn.net/shutterstock/videos/16018183/thumb/1.jpg) repeat 0 0;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-animation: slide 30s linear infinite;
+    font-family: "Poppins"
+}
+
+.hwy-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    border: 10px solid #6fc0ba;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.hwy-card {
+    border: 2px solid #231f1f;
+    height: 100%;
+    margin: 5px;
+    border-radius: 2px;
+}
+
+.hwy-card h4 {
+    color: #b7b6b6;
+    border-bottom: 1px solid #00EEEE;
+    padding: 10px;
+    font-weight: 600;
+    border-right: 2px solid #00EEEE;
+    margin: 5px;
+    font-size: 13px;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.hwy-card h4 i {
+    color: #6fc0ba;
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+.hwy-live-box-container {
+    height: 50%;
+}
+
+#hwy-recent-signatures-container,
+#hwy-comm-globe-container,
+#hwy-recent-alpha {
+    height: 95%;
+}
+
+#hwy-comm-globe .hwy-card {
+    border-bottom: 0
+}
+
+
+
+#hwy-recent-signatures-container,
+#hwy-recent-file-activity {
+    padding-right: 0;
+    padding-left: 8px
+}
+
+#hwy-comm-globe-container,
+#hwy-comm-globe,
+#hwy-comm-feed {
+    padding: 0
+}
+
+#hwy-recent-alpha,
+#hwy-recent-applications,
+#hwy-recent-file-process {
+    padding-left: 0;
+    padding-right: 8px
+}
+
+#hwy-recent-applications,
+#hwy-recent-file-process,
+#hwy-recent-file-activity {
+    height: 50%
+}
+
+#hwy-recent-file-activity { 
+    height: 100%;
+}
+
+#hwy-recent-applications .hwy-card {
+    border-bottom: 0
+}
+
+#hwy-recent-file-activity .hwy-card,
+#hwy-recent-file-process .hwy-card {
+    border-top: 0
+}
+
+#hwy-comm-globe {
+    height: 70%;
+}
+
+#hwy-comm-feed {
+    height: 30%;
+}
+
+.hwy-chart-container {
+    height: 50%;
+}
+
+#hwy-cpu-usage-chart {
+    padding-right: 0
+}
+
+#hwy-bandwidth-chart {
+    padding: 0
+}
+
+#hwy-disk-os-chart {
+    padding-left: 0
+}
+
+#hwy-cpu-usage-chart .hwy-card {
+    border-right: 0
+}
+
+#hwy-bandwidth-chart .hwy-card {
+    border-left: 0;
+    border-right: 0
+}
+
+#hwy-disk-os-chart .hwy-card {
+    border-left: 0
+}
+
+#hwy-glove-points {
+    color: #bd0404;
+    overflow: hidden;
+    max-height: 90%;
+    list-style: circle;
+    list-style-type: circle;
+    text-align: left;
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 12px;
+    padding: 0 5px;
+    border: 2px solid #5c0a0a;
+    margin: 5px 0 5px 5px;
+    border-radius: 5px;
+}
+
+#hwy-glove-points li {
+    line-height: 28px;
+    /* border-bottom: 2px solid #5c0a0a; */
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    /* border-right: .15em solid orange; */
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em;
+    /* Adjust as needed */
+}
+
+#hwy-glove-points li:last-child,
+#hwy-glove-points li:first-child {
+    border-bottom: 0
+}
+
+.hwy-animated-list {
+    color: #bd0404;
+    overflow: hidden;
+    max-height: 80%;
+    list-style: circle;
+    list-style-type: circle;
+    text-align: left;
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 12px;
+    padding: 0 5px;
+    margin: 5px 0 5px 5px;
+}
+
+.hwy-animated-list li {
+    /* border-bottom: 2px solid #5c0a0a; */
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    /* border-right: 1px dotted #bd0404; */
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em;
+    /* Adjust as needed */
+    animation: typing 1.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+.hwy-globe-signature-table {
+    color: #fff;
+    width: 100%;
+    font-size: 12px;
+}
+
+
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    10% { border-color: orange; }
+  }
+
+@-webkit-keyframes slide {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -400px 0;
+    }
+}

@@ -1,0 +1,12 @@
+node_modules
+.DS_Store
+dist
+*.log
+coverage
+.idea
+*.dll
+bin
+*.pyc
+venv/*
+app/utils/apiConfig.js
+

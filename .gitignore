@@ -8,5 +8,3 @@ coverage
 bin
 *.pyc
 venv/*
-app/utils/apiConfig.js
-

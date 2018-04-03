@@ -16,7 +16,7 @@ export default class Middle extends React.Component {
 
                         <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8" style={{ "padding-left": "0" }}>
 
-                            Globe
+                            <div id="globe"></div>
 
                         </div>
 
@@ -47,6 +47,18 @@ export default class Middle extends React.Component {
             </div>
 
         </div>
+    }
+
+    componentDidMount() {
+        if (!Detector.webgl) {
+
+            console.log("WEBGL not found !.")
+            Detector.addGetWebGLMessage({ parent: document.getElementById("hwy-container") });
+
+        } else {
+
+            createGlobe();
+        }
     }
 
 }

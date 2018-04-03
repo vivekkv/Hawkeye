@@ -8,9 +8,7 @@ export default class CpuChart extends React.Component {
         var dataSet = this.props.data.get("lstCpu").map((i) => { return i.count }).toArray();
 
         const data = {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-                21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-                41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60],
+            labels: [],
             datasets: [
                 {
                     lineTension: 0,
@@ -31,6 +29,10 @@ export default class CpuChart extends React.Component {
             ]
         };
 
+        for(let i=0; i<40; i++) {
+            data.labels.push("");
+        }
+        
         return <div className="col-xs-3 col-lg-3 col-md-3 col-sm-3" id="hwy-cpu-usage-chart">
 
             <div className="hwy-card">

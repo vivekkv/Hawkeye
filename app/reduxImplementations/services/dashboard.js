@@ -5,11 +5,10 @@ export function loadRecentFilesData(startDate, endDate, sensorId) {
 
 	return new Promise((resolve, reject) => {
 
-        debugger
-
         resolve({
             'lstRecentFiles': List([{
-                "name": 'Dummy file' + Math.random()
+                "name": 'Dummy file' + Math.random(),
+                'id': Math.random()
             }])
         })
 
@@ -125,7 +124,8 @@ export function loadDiskOsData(startDate, endDate, sensorId) {
 
         resolve({
             'lstDiskOs': List([{
-                "name": "disk os " + Math.random(),
+                "count":  Math.floor(Math.random()*(100-0+1)+0),
+                "label": "diskos " + Math.random().toFixed(1),
             }])
         })
 
@@ -138,7 +138,8 @@ export function loadRecentProcessData(startDate, endDate, sensorId) {
 
         resolve({
             'lstRecentProcess': List([{
-                "name": "process " + Math.random(),
+                "count":  Math.floor(Math.random()*(100-0+1)+0),
+                "label": "recent process " + Math.random().toFixed(1),
             }])
         })
     });

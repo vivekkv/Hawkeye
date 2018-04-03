@@ -65,7 +65,7 @@ function* loadBandWidth() {
         const { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_BANDWIDTH);
         let formData = yield select(getStateData);
         let response = yield call(loadBandwidthData, startDate, endDate, sensorId, workspaceId);
-        let newList = formData.get("lstBandwidth").concat(response.lstBandwidth);
+        let newList = response.lstBandwidth.concat(formData.get("lstBandwidth"));
         yield put(createActionType(SET_FORM, { 'data': { 'lstBandwidth': newList } }));
     }
 }
@@ -89,7 +89,7 @@ function* loadDiskOs() {
         const { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_DISK_OS);
         let formData = yield select(getStateData);
         let response = yield call(loadDiskOsData, startDate, endDate, sensorId, workspaceId);
-        let newList = formData.get("lstDiskOs").concat(response.lstDiskOs);
+        let newList = response.lstDiskOs.concat(formData.get("lstDiskOs"));
         yield put(createActionType(SET_FORM, { 'data': { 'lstDiskOs': newList } }));
     }
 }
@@ -101,7 +101,7 @@ function* loadRecentProcess() {
         const { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_RECENT_PROCESS);
         let formData = yield select(getStateData);
         let response = yield call(loadRecentProcessData, startDate, endDate, sensorId, workspaceId);
-        let newList = formData.get("lstRecentProcess").concat(response.lstRecentProcess);
+        let newList = response.lstRecentProcess.concat(formData.get("lstRecentProcess"));
         yield put(createActionType(SET_FORM, { 'data': { 'lstRecentProcess': newList } }));
     }
 }
@@ -137,6 +137,7 @@ export default function* deviceSagas() {
         fork(loadIpRepucations),
         fork(loadBandWidth),
         fork(loadCpu),
+        fork(loadDiskOs),
         fork(loadRecentProcess),
         fork(refreshDashboard)
     ]

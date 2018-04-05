@@ -14,16 +14,16 @@ function createGlobe() {
 
     debugger
 
-    globe = new ENCOM.Globe(width, height - 50, {
-        font: "18px arial, sans-serif;",
+    globe = new ENCOM.Globe(width - 50, height - 50, {
+       // font: "18px arial, sans-serif;",
         data: newData, // copy the data array
         tiles: grid.tiles,
-        baseColor: "#ed0b0b",
-        markerColor: "blue",
-        pinColor: "#c43838",
-        satelliteColor: "blue",
-        waveColor: "red",
-        introLinesColor: "red",
+       // baseColor: "#ed0b0b",
+      //  markerColor: "blue",
+      //  pinColor: "#c43838",
+      //  satelliteColor: "blue",
+     //   waveColor: "red",
+     //   introLinesColor: "red",
         // scale: 10,
         // dayLength: 1000 * 1,
         // introLinesDuration: 100,

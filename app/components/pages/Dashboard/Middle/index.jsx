@@ -12,15 +12,8 @@ export default class Middle extends React.Component {
                     <h4 style={{ "margin-top": "0" }}>
                         <i className="fa fa-globe"></i> Globe</h4>
 
-                    <div className="row">
-
-                        <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8" style={{ "padding-left": "0" }}>
-
                             <div id="globe"></div>
 
-                        </div>
-
-                    </div>
 
                 </div>
 

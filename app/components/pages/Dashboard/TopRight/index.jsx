@@ -10,7 +10,7 @@ export default class TopRight extends React.Component {
                     <h4>
                         <i className="fa fa-adn"></i> Recent Application visits</h4>
 
-                    <ul id="hwy-recent-apps-list" className="hwy-animated-list" style={{ "height": "80%" }}>
+                    <ul id="hwy-recent-apps-list" className="hwy-animated-list">
                         {
                             this.props.data.get("lstApplications").map((application) => {
                                 return <li>{application.name}</li>
@@ -26,7 +26,7 @@ export default class TopRight extends React.Component {
                     <h4>
                         <i className="fa fa-flag"></i>IP Reputation</h4>
 
-                    <ul id="hwy-recent-apps-list" className="hwy-animated-list" style={{ "height": "80%" }}>
+                    <ul id="hwy-recent-apps-list" className="hwy-animated-list">
                         {
                             this.props.data.get("lstIPReputations").map((application) => {
                                 return <li>{application.name}</li>

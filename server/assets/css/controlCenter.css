@@ -23,6 +23,7 @@ html {
     height: 100%;
     margin: 5px;
     border-radius: 2px;
+    overflow: hidden;
 }
 
 .hwy-card h4 {
@@ -101,6 +102,11 @@ html {
 
 #hwy-comm-globe {
     height: 70%;
+}
+
+#hwy-comm-globe #globe {
+    width: 100%;
+    height: 100%;
 }
 
 #hwy-comm-feed {
@@ -184,6 +190,11 @@ html {
     background: #2f5d5d
 }
 
+.hwy-globe-signature-table thead td{
+    text-transform: uppercase
+}
+
+
 .hwy-globe-table-wrapper {
     overflow: hidden;
 }
@@ -191,8 +202,6 @@ html {
 .hwy-animated-list {
     margin: 0;
     padding: 0 5px;
-    overflow: hidden;
-    height: 89%;
 }
 
 .hwy-animated-list li {
@@ -203,4 +212,36 @@ html {
     text-align: left;
     line-height: 20px;
     border-bottom: 1px solid #006565;
+}
+
+.hwy-run-animated-circle {
+    width: 0;
+    height: 0;
+    display: block;
+    background: #0dece2;
+    border-radius: 50%;
+    margin-top: -3px;
+    position: absolute;
+    float: left;
+    display: block;
+}
+
+.hwy-random-item-animated-list li {
+    line-height: 30px;
+    border-bottom: 1px solid #00eeee
+}
+
+#hwy-recent-file-activity .hwy-card h4 {
+    border-right: 0;
+    border-bottom: 1px solid #FFCC00;
+    border-top: 3px solid #FFCC00;
+    text-align: left;
+}
+
+.hwy-border-ylow-bottom {
+    border-bottom: 3px solid #FFCC00;
+    width: 98%;
+    height: 1px;
+    margin-left: 6px;
+    display: block;
 }

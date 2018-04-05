@@ -27,7 +27,7 @@ export default class Middle extends React.Component {
             </div>
 
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="hwy-comm-feed">
-                <div className="hwy-card">
+                <div className="hwy-card hwy-globe-table-wrapper">
                     <table className="hwy-globe-signature-table">
                         <thead>
                             <tr>
@@ -40,7 +40,20 @@ export default class Middle extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
+                            {
+                                this.props.data.get("lstGlobeData").map((map) => {
 
+                                    return <tr>
+                                        <td>{map.severity}</td>
+                                        <td>{map.mac_address}</td>
+                                        <td>{map.country}</td>
+                                        <td>{map.city}</td>
+                                        <td>{map.ip}</td>
+                                        <td>{map.signature}</td>
+                                    </tr>
+
+                                })
+                            }
                         </tbody>
                     </table>
                 </div>

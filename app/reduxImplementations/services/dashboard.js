@@ -55,6 +55,7 @@ export function loadGlobeData(startDate, endDate, sensorId) {
                 "severity": "high",
                 "country":"india",
                 "city": "",
+                "mac_address": Math.random(),
                 "ip": "127.1.2.1"
             }])
         })

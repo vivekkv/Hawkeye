@@ -13,9 +13,9 @@ export function getToken() {
 
 	try {
 
-		let beacon_storage = JSON.parse(getItem("beacon_storage"));
+		let hawkeye_storage = JSON.parse(getItem("hawkeye_storage"));
 
-		if (!beacon_storage.token) {
+		if (!hawkeye_storage.token) {
 
 			//alert("beacon token parse failed");
 
@@ -23,7 +23,7 @@ export function getToken() {
 			return null;
 		}
 
-		return beacon_storage.token;
+		return hawkeye_storage.token;
 	} catch (e) {
 
 		window.location = sentinelHomeUrl;
@@ -36,15 +36,15 @@ export function getWorkspaceId() {
 
 	try {
 
-		let beacon_storage = JSON.parse(getItem("beacon_storage"));
+		let hawkeye_storage = JSON.parse(getItem("hawkeye_storage"));
 
-		if (!beacon_storage.workspaceId) {
+		if (!hawkeye_storage.workspaceId) {
 
-			alert("beacon work space id parse failed");
+			//alert("beacon work space id parse failed");
 			return null;
 		}
 
-		return beacon_storage.workspaceId;
+		return hawkeye_storage.workspaceId;
 	} catch (e) {
 
 		alert("beacon work space id parse failed");
@@ -56,15 +56,15 @@ export function getSensors() {
 
 	try {
 
-		let beacon_storage = JSON.parse(getItem("beacon_storage"));
+		let hawkeye_storage = JSON.parse(getItem("hawkeye_storage"));
 
-		if (!beacon_storage.sensors) {
+		if (!hawkeye_storage.sensors) {
 
 			//alert("beacon sensor listing parse failed");
 			return [];
 		}
 
-		return beacon_storage.sensors;
+		return hawkeye_storage.sensors;
 
 	} catch (e) {
 
@@ -121,25 +121,25 @@ export function readSentinelCookie() {
 
 export function unAuthorizeUser() {
 
-	remove("beacon_storage");
+	remove("hawkeye_storage");
 }
 
 function updateSentinelInfoToLocalStorage(sentienlInfo) {
 
-	// let sensorInfo = parseSensorInfo(sentienlInfo);
-	// let token = sentienlInfo.token;
-	// let workspaceId = sentienlInfo.workspace_uuid;
+	let sensorInfo = parseSensorInfo(sentienlInfo);
+	let token = sentienlInfo.token;
+	let workspaceId = sentienlInfo.workspace_uuid;
 
-	// let date = moment().subtract(7, 'days');
-	// let day = date.date();
-	// let month = date.month();
-	// let year = date.year();
-	// let startDate = moment(new Date(year, month, day, 0, 0, 0));
-	// let endDate = moment();
+	let date = moment().subtract(7, 'days');
+	let day = date.date();
+	let month = date.month();
+	let year = date.year();
+	let startDate = moment(new Date(year, month, day, 0, 0, 0));
+	let endDate = moment();
 
-	// setItem("startDate", startDate.unix());
-	// setItem("endDate", endDate.unix());
-	// setItem("beacon_storage", JSON.stringify({ 'sensors': sensorInfo, 'token': token, 'workspaceId': workspaceId }));
+	setItem("startDate", startDate.unix());
+	setItem("endDate", endDate.unix());
+	setItem("hawkeye_storage", JSON.stringify({ 'sensors': sensorInfo, 'token': token, 'workspaceId': workspaceId }));
 }
 
 function initRefreshToken() {
@@ -157,9 +157,9 @@ function initRefreshToken() {
 
 			if (response.completed && response.data) {
 
-				let beacon_storage = JSON.parse(getItem("beacon_storage"));
-				beacon_storage.token = response.data.refresh_token;
-				setItem("beacon_storage", JSON.stringify(beacon_storage));
+				let hawkeye_storage = JSON.parse(getItem("hawkeye_storage"));
+				hawkeye_storage.token = response.data.refresh_token;
+				setItem("hawkeye_storage", JSON.stringify(hawkeye_storage));
 
 			} else {
 

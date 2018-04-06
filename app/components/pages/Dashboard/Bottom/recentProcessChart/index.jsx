@@ -5,7 +5,7 @@ export default class RecentProcesss extends React.Component {
 
     render() {
 
-        var dataSet = this.props.data.get("lstRecentProcess").map((i) => { return i.count }).toArray();
+        var dataSet = this.props.data.get("lstRecentProcess").reverse().slice(0, 30).map((i) => { return i.count }).toArray();
 
         const data = {
             labels: [],
@@ -29,16 +29,17 @@ export default class RecentProcesss extends React.Component {
             ]
         };
 
-        for(let i=0; i<40; i++) {
+        for (let i = 0; i < 40; i++) {
             data.labels.push("");
         }
 
-        return  <div className="col-xs-3 col-lg-3 col-md-3 col-sm-3" id="hwy-recent-process-chart">
+        return <div className="col-xs-3 col-lg-3 col-md-3 col-sm-3 hwy-yellow-card-header" id="hwy-recent-process-chart">
 
             <div className="hwy-card">
                 <h4>
                     <i className="fa fa-microchip"></i>Recent Process</h4>
-                    <Line data={data} />
+                <span className="hwy-border-ylow-bottom"></span>
+                <Line data={data} />
             </div>
 
         </div>

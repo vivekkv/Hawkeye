@@ -13,8 +13,9 @@ html {
     right: 0;
     bottom: 0;
     top: 0;
-    border: 2px solid #6fc0ba;
+    border: 2px solid #39fff0;
     border-radius: 5px;
+    margin: 10px;
     overflow: hidden;
 }
 
@@ -32,7 +33,7 @@ html {
     padding: 10px;
     font-weight: 600;
     border-right: 2px solid #00EEEE;
-    margin: 5px;
+    margin: 0;
     font-size: 13px;
     text-transform: uppercase;
     text-overflow: ellipsis;
@@ -60,8 +61,6 @@ html {
     border-bottom: 0
 }
 
-
-
 #hwy-recent-signatures-container,
 #hwy-recent-file-activity {
     padding-right: 0;
@@ -87,7 +86,7 @@ html {
     height: 50%
 }
 
-#hwy-recent-file-activity { 
+#hwy-recent-file-activity {
     height: 100%;
 }
 
@@ -183,17 +182,23 @@ html {
     font-size: 12px;
     border-collapse: collapse;
     border-spacing: 0;
-    width: 100% 
+    width: 100%
 }
 
 .hwy-globe-signature-table thead {
-    background: #2f5d5d
+    background: #101e1d;
+    border-top: 3px solid #eabb00;
+    border-bottom: 1px solid #eabb00
 }
 
-.hwy-globe-signature-table thead td{
+.hwy-globe-signature-table thead td {
     text-transform: uppercase
 }
 
+.hwy-globe-signature-table tbody tr:nth-child(even) {
+    background: #2b2a25;
+    color: #6fc0ba
+}
 
 .hwy-globe-table-wrapper {
     overflow: hidden;
@@ -210,8 +215,7 @@ html {
     list-style: none;
     margin: 0;
     text-align: left;
-    line-height: 20px;
-    border-bottom: 1px solid #006565;
+    border-bottom: 1px solid #00eeee;
 }
 
 .hwy-run-animated-circle {
@@ -227,21 +231,46 @@ html {
 }
 
 .hwy-random-item-animated-list li {
-    line-height: 30px;
     border-bottom: 1px solid #00eeee
 }
 
-#hwy-recent-file-activity .hwy-card h4 {
+.hwy-yellow-card-header .hwy-card h4 {
     border-right: 0;
     border-bottom: 1px solid #FFCC00;
     border-top: 3px solid #FFCC00;
     text-align: left;
+    padding: 2px
 }
 
 .hwy-border-ylow-bottom {
     border-bottom: 3px solid #FFCC00;
-    width: 98%;
+    width: 100%;
     height: 1px;
-    margin-left: 6px;
     display: block;
+}
+
+#hwy-recent-file-activity-list li .hwy-info-container {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#hwy-recent-file-activity-list li .hwy-info-container .hwy-li-name {
+    display: inline-block;
+    padding: 0px;
+    background: #ffcc00;
+    margin-right: 6px;
+    color: #000;
+    padding: 0px 5px 0px 5px;
+    font-size: 8px;
+    min-width: 40px;
+    text-align: center;
+}
+
+#hwy-recent-file-activity-list li .hwy-info-container .hwy-li-action {}
+
+#hwy-recent-file-activity-list li .hwy-info-container .hwy-li-file {
+    display: inline-block;
+    margin: 0;
 }

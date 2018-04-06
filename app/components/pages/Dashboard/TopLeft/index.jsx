@@ -9,27 +9,33 @@ export default class Topleft extends React.Component {
 
     render() {
 
-        var dataSet = this.props.data.get("lstRecentFiles").reverse().slice(0, 20);
+        var dataSet = this.props.data.get("lstRecentFiles").reverse().slice(0, 30);
 
-        return <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="hwy-recent-signatures-container"><div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="hwy-recent-file-activity">
-            <div className="hwy-card">
-                <h4>
-                    {/* <i className="fa fa-file"></i> */}
-                    Recent File activity ticks</h4>
-                <span className="hwy-border-ylow-bottom"></span>
+        return <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 hwy-yellow-card-header" id="hwy-recent-signatures-container">
 
-                <ul id="hwy-recent-file-activity-list" className="hwy-animated-list hwy-random-item-animated-list">
-                    {
-                        dataSet.map((i) => {
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="hwy-recent-file-activity">
+                <div className="hwy-card">
+                    <h4>
+                        <i className="fa fa-file"></i>
+                        Recent File activity ticks</h4>
+                    <span className="hwy-border-ylow-bottom"></span>
 
-                            return <li key={i.id}>
-                                <span>{i.name}</span>
-                                <span className="hwy-run-animated-circle"></span>
-                            </li>
-                        })
-                    }
+                    <ul id="hwy-recent-file-activity-list" className="hwy-animated-list hwy-random-item-animated-list">
+                        {
+                            dataSet.map((i) => {
 
-                    {/* <li>
+                                return <li key={i.logTime}>
+                                    <div className="hwy-info-container">
+                                        <span className="hwy-li-name">{i.userName}</span>
+                                        <span className="hwy-li-action">{i.action}, &nbsp;</span>
+                                        <p className="hwy-li-file" title={i.fileName}>{i.fileName}</p>
+                                    </div>
+                                    <span className="hwy-run-animated-circle"></span>
+                                </li>
+                            })
+                        }
+
+                        {/* <li>
                         <span>asdfsdf</span>
                         <span className="hwy-run-animated-circle"></span>
                      </li>
@@ -59,9 +65,9 @@ export default class Topleft extends React.Component {
                         <span className="hwy-run-animated-circle"></span>
                      </li> */}
 
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
         </div>
     }
 
@@ -73,22 +79,22 @@ export default class Topleft extends React.Component {
 
         let index = Math.floor(Math.random() * (max - min + 1)) + min;
         let ele = $(".hwy-run-animated-circle").eq(index);
-        
+
         ele.show();
         ele.css({ "width": "5px", "height": "5px" });
 
-        ele.animate({'margin-left': width}, 2000, function() {
+        ele.animate({ 'margin-left': width }, 2000, function () {
             ele.remove();
         });
     }
 
     componentDidUpdate() {
 
-        if($(".hwy-run-animated-circle").length >= 5) {
-            
+        if ($(".hwy-run-animated-circle").length >= 5) {
+
             let animate = this.animateList;
-            setTimeout(function() {
-                
+            setTimeout(function () {
+
                 animate();
 
             }, 2000)

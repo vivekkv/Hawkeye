@@ -12,8 +12,6 @@ function createGlobe() {
     var width = $("#hwy-comm-globe").width();
     let height = $("#hwy-comm-globe").height();
 
-    debugger
-
     globe = new ENCOM.Globe(width - 50, height - 50, {
        // font: "18px arial, sans-serif;",
         data: newData, // copy the data array

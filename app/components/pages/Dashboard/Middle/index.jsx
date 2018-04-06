@@ -4,19 +4,17 @@ export default class Middle extends React.Component {
 
     render() {
 
-        return <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6" id="hwy-comm-globe-container">
+        return <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 hwy-yellow-card-header" id="hwy-comm-globe-container">
 
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="hwy-comm-globe">
 
                 <div className="hwy-card">
-                    <h4 style={{ "margin-top": "0" }}>
-                        <i className="fa fa-globe"></i> Globe</h4>
-
-                            <div id="globe"></div>
-
-
+                    <h4>
+                        <i className="fa fa-globe"></i>
+                        Globe</h4>
+                    <span className="hwy-border-ylow-bottom"></span>
+                    <div id="globe"></div>
                 </div>
-
             </div>
 
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="hwy-comm-feed">
@@ -34,7 +32,7 @@ export default class Middle extends React.Component {
                         </thead>
                         <tbody>
                             {
-                                this.props.data.get("lstGlobeData").map((map) => {
+                                this.props.data.get("lstGlobeData").reverse().slice(0, 30).map((map) => {
 
                                     return <tr>
                                         <td>{map.severity}</td>

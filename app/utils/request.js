@@ -3,7 +3,6 @@ import Promise from 'bluebird';
 import { logError } from './errorLog';
 import { serviceBase, sentinelHomeUrl  } from './apiConfig';
 import { getToken, unAuthorizeUser } from './authRegistry';
-import { debug } from 'util';
 
 export function callApi(url, options) {
 
@@ -96,19 +95,19 @@ function checkStatus(response) {
 
 function addAuthorizationHeader(options) {
 
-	options = options || {};
-	let token = getToken();
+	// options = options || {};
+	// let token = getToken();
 
-	if (options.headers && token) {
+	// if (options.headers && token) {
 
-		options.headers.Authorization = token;
+	// 	options.headers.Authorization = token;
 
-	} else if (token) {
+	// } else if (token) {
 
-		options.headers = {
-			Authorization: token
-		}
-	}
+	// 	options.headers = {
+	// 		Authorization: token
+	// 	}
+	// }
 
 	return options;
 }

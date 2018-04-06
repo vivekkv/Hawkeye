@@ -13,22 +13,22 @@ export default class CrudBasic {
 
     request(options, objParams) {
 
-        let params = objParams ? objParams :  {};
+        // let params = objParams ? objParams :  {};
         let entity = this.state.entity;
-        let workSpaceId = params.workspaceId ? params.workspaceId: getWorkspaceId();
+        // let workSpaceId = params.workspaceId ? params.workspaceId: getWorkspaceId();
         
-        let startDate = params.startDate ? params.startDate:  getItem("startDate");
-        let endDate   = params.endDate ? params.endDate : getItem("endDate");
-        let sensorId = params.sensorId ? params.sensorId: getItem("sensorId");
+        // let startDate = params.startDate ? params.startDate:  getItem("startDate");
+        // let endDate   = params.endDate ? params.endDate : getItem("endDate");
+        // let sensorId = params.sensorId ? params.sensorId: getItem("sensorId");
 
-        _.extend(options.body, {
-            "workspaceId": workSpaceId,
-            "sensorId": sensorId ? sensorId : "",
-            "startTime": startDate,
-            "endTime": endDate,
-        });
+        // _.extend(options.body, {
+        //     "workspaceId": workSpaceId,
+        //     "sensorId": sensorId ? sensorId : "",
+        //     "startTime": startDate,
+        //     "endTime": endDate,
+        // });
 
-        options.body = JSON.stringify(options.body)
+        // options.body = JSON.stringify(options.body)
       
         return new Promise((resolve, reject) => {
 

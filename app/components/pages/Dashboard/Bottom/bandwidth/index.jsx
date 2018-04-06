@@ -5,7 +5,7 @@ export default class Bandwidth extends React.Component {
 
     render() {
 
-        var dataSet = this.props.data.get("lstBandwidth").map((i) => { return i.count }).toArray();
+        var dataSet = this.props.data.get("lstBandwidth").reverse().slice(0, 30).map((i) => { return i.count }).toArray();
 
         const data = {
             labels: [],
@@ -31,21 +31,23 @@ export default class Bandwidth extends React.Component {
                     pointRadius: 1,
                     pointHitRadius: 1,
                     bezierCurve: false,
-                    lineTension: 0,           
+                    lineTension: 0,
                     data: dataSet
                 }
             ]
         };
 
-        for(let i=0; i<40; i++) {
+        for (let i = 0; i < 40; i++) {
             data.labels.push("");
         }
 
-        return <div className="col-xs-3 col-lg-3 col-md-3 col-sm-3" id="hwy-network-bandwith-chart">
+        return <div className="col-xs-3 col-lg-3 col-md-3 col-sm-3 hwy-yellow-card-header" id="hwy-network-bandwith-chart">
 
             <div className="hwy-card">
                 <h4>
                     <i className="fa fa-bars"></i>Bandwidth chart</h4>
+
+                <span className="hwy-border-ylow-bottom"></span>
 
                 <Line data={data} />
 

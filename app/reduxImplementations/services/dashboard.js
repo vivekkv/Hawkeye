@@ -1,31 +1,25 @@
 import CrudBase from './crudBase';
 import { List } from 'immutable';
+import { getWorkspaceId } from 'utils/authRegistry';
 
 export function loadRecentFilesData(startDate, endDate, sensorId) {
 
 	return new Promise((resolve, reject) => {
 
-		// resolve({
-		//     'lstRecentFiles': List([{
-		//         "name": 'Dummy file' + Math.random(),
-		//         'id': Math.random()
-		//     }])
-		// })
-
 		new CrudBase("pathfinder/recentfiles").request({
 			'method': "POST",
 			'body': JSON.stringify({
-				'StartDate': 1503365520,
-				'EndDate': 1503366661,
-				'SensorId': "sensor_10ffa630",
-				"WorkspaceId": "workspace_56beb2ae"
+				'StartDate': startDate,
+				'EndDate': endDate,
+				//'SensorId': sensorId,
+				"WorkspaceId": getWorkspaceId()
 			}),
 			'headers': {
 				'Content-Type': 'application/json'
 			}
 		}).then((response) => {
 
-            debugger
+			debugger
 
 			if (response.completed) {
 

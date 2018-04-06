@@ -117,15 +117,24 @@ function* refreshDashboard() {
         let workspaceId = formData.get("workspaceId");
         let sensorId = formData.get("sensorId");
 
-        yield put(createActionType(LOAD_RECENT_FILES, { startDate, endDate, sensorId, workspaceId }));
-        yield put(createActionType(LOAD_GLOBE_DATA, { startDate, endDate, sensorId, workspaceId }));
-        yield put(createActionType(LOAD_APPLICATIONS, { startDate, endDate, sensorId, workspaceId }));
-        yield put(createActionType(LOAD_IP_REPUTATIONS, { startDate, endDate, sensorId, workspaceId }));
-        yield put(createActionType(LOAD_BANDWIDTH, { startDate, endDate, sensorId, workspaceId }));
-        yield put(createActionType(LOAD_CPU, { startDate, endDate, sensorId, workspaceId }));
-        yield put(createActionType(LOAD_DISK_OS, { startDate, endDate, sensorId, workspaceId }));
-        yield put(createActionType(LOAD_RECENT_PROCESS, { startDate, endDate, sensorId, workspaceId }));
-        yield put(createActionType(SET_FORM, { 'data': { startDate, endDate } }));
+        let stUnix = 1503365520;//startDate.unix();
+        let endUnix = 1503366661;//endDate.unix();
+
+        debugger
+
+        yield put(createActionType(LOAD_RECENT_FILES, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_GLOBE_DATA, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_APPLICATIONS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_IP_REPUTATIONS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_BANDWIDTH, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_CPU, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_DISK_OS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_RECENT_PROCESS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+
+        let nwStartDate = endDate.clone();
+        let nwEndDate = endDate.add(10, 'seconds');
+
+        yield put(createActionType(SET_FORM, { 'data': { startDate: nwStartDate, endDate: nwEndDate } }));
     }
 }
 

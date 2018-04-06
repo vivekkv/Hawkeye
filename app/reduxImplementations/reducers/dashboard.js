@@ -12,8 +12,9 @@ var initialState = fromJS({
     'lstCpu': List([]),
     'lstDiskOs': List([]),
     'lstRecentProcess': List([]),
+    'lstResources': List([]),
     'startDate': moment.unix(1503365520),// moment("2017-08-21T00:00:00", "YYYY-MM-DDThh:mm:ss").subtract(10, 'seconds'),  
-    'endDate': moment.unix(1503365522),//moment("2017-08-21T00:00:00", "YYYY-MM-DDThh:mm:ss").add(10, "seconds"),  
+    'endDate': moment.unix(1503366661),//moment("2017-08-21T00:00:00", "YYYY-MM-DDThh:mm:ss").add(10, "seconds"),  
     'workspaceId': "",
     'sensorId': ""
 });

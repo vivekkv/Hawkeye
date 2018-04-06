@@ -14,7 +14,7 @@ export default class TopRight extends React.Component {
 
                     <ul id="hwy-recent-apps-list" className="hwy-animated-list">
                         {
-                            this.props.data.get("lstApplications").reverse().slice(0, 30).map((application) => {
+                            this.props.data.get("lstApplications").map((application) => {
                                 return <li>{application.name}</li>
                             })
                         }

@@ -16,3 +16,4 @@ export const LOAD_CPU = ConstantBuilder(MODULE, TYPE, "LOAD_CPU");
 export const LOAD_DISK_OS = ConstantBuilder(MODULE, TYPE, "LOAD_DISK_OS");
 export const LOAD_RECENT_PROCESS = ConstantBuilder(MODULE, TYPE, "LOAD_RECENT_PROCESS");
 export const REFRESH_DASHBOARD = ConstantBuilder(MODULE, TYPE, "REFRESH_DASHBOARD");
+export const LOAD_RESOURCES = ConstantBuilder(MODULE, TYPE, "LOAD_RESOURCES");

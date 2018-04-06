@@ -5,7 +5,7 @@ export default class CpuChart extends React.Component {
 
     render() {
 
-        var dataSet = this.props.data.get("lstCpu").reverse().slice(0, 30).map((i) => { return i.count }).toArray();
+        var dataSet = this.props.data.get("lstResources").reverse().slice(0, 100).map((i) => { return i.cpuUsage }).toArray();
 
         const data = {
             labels: [],

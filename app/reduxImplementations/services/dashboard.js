@@ -1,8 +1,7 @@
 import CrudBase from './crudBase';
 import { List } from 'immutable';
-import { getWorkspaceId } from 'utils/authRegistry';
 
-export function loadRecentFilesData(startDate, endDate, sensorId) {
+export function loadRecentFilesData(workspaceId, startDate, endDate, sensorId) {
 
 	return new Promise((resolve, reject) => {
 
@@ -12,14 +11,12 @@ export function loadRecentFilesData(startDate, endDate, sensorId) {
 				'StartDate': startDate,
 				'EndDate': endDate,
 				//'SensorId': sensorId,
-				"WorkspaceId": getWorkspaceId()
+				"WorkspaceId": workspaceId
 			}),
 			'headers': {
 				'Content-Type': 'application/json'
 			}
 		}).then((response) => {
-
-			debugger
 
 			if (response.completed) {
 
@@ -28,6 +25,138 @@ export function loadRecentFilesData(startDate, endDate, sensorId) {
 			} else {
 
 				resolve({ 'lstRecentFiles': List([]) });
+			}
+
+		}).catch((e) => {
+
+			reject(e);
+		});
+
+	});
+}
+
+export function loadApplicationsData(workspaceId, startDate, endDate, sensorId) {
+
+	return new Promise((resolve, reject) => {
+
+		new CrudBase("hawkeye/recentApplications").request({
+			'method': "POST",
+			'body': JSON.stringify({
+				'StartDate': startDate,
+				'EndDate': endDate,
+				"WorkspaceId": workspaceId
+			}),
+			'headers': {
+				'Content-Type': 'application/json'
+			}
+		}).then((response) => {
+
+			if (response.completed) {
+
+				resolve({ 'lstApplications': List(response.data) });
+
+			} else {
+
+				resolve({ 'lstApplications': List([]) });
+			}
+
+		}).catch((e) => {
+
+			reject(e);
+		});
+
+	});
+}
+
+export function loadIpReputationsData(workspaceId, startDate, endDate, sensorId) {
+
+	return new Promise((resolve, reject) => {
+
+		new CrudBase("hawkeye/recentApplications").request({
+			'method': "POST",
+			'body': JSON.stringify({
+				'StartDate': startDate,
+				'EndDate': endDate,
+				"WorkspaceId": workspaceId
+			}),
+			'headers': {
+				'Content-Type': 'application/json'
+			}
+		}).then((response) => {
+
+			if (response.completed) {
+
+				resolve({ 'lstIPReputations': List(response.data) });
+
+			} else {
+
+				resolve({ 'lstIPReputations': List([]) });
+			}
+
+		}).catch((e) => {
+
+			reject(e);
+		});
+
+	});
+}
+
+export function loadResource(workspaceId, startDate, endDate, sensorId) {
+
+	return new Promise((resolve, reject) => {
+
+		new CrudBase("hawkeye/resource").request({
+			'method': "POST",
+			'body': JSON.stringify({
+				'StartDate': startDate,
+				'EndDate': endDate,
+				"WorkspaceId": workspaceId
+			}),
+			'headers': {
+				'Content-Type': 'application/json'
+			}
+		}).then((response) => {
+
+			if (response.completed) {
+
+				resolve({ 'lstResources': List(response.data) });
+
+			} else {
+
+				resolve({ 'lstResources': List([]) });
+			}
+
+		}).catch((e) => {
+
+			reject(e);
+		});
+
+	});
+}
+
+export function loadBandwidthData(workspaceId, startDate, endDate, sensorId) {
+
+	return new Promise((resolve, reject) => {
+
+		new CrudBase("hawkeye/bandwidth").request({
+			'method': "POST",
+			'body': JSON.stringify({
+				'StartDate': startDate,
+				'EndDate': endDate,
+				"WorkspaceId": workspaceId
+			}),
+			'headers': {
+				'Content-Type': 'application/json'
+			}
+		}).then((response) => {
+
+			if (response.completed) {
+
+				resolve({ 'lstBandwidth': List(response.data) });
+
+			} else {
+
+				resolve({ 'lstBandwidth': List([]) });
 			}
 
 		}).catch((e) => {
@@ -58,49 +187,8 @@ export function loadGlobeData(startDate, endDate, sensorId) {
 	});
 }
 
-export function loadApplicationsData(startDate, endDate, sensorId) {
-
-	return new Promise((resolve, reject) => {
-
-		resolve({
-			'lstApplications': List([{
-				"name": "application " + Math.random()
-			}])
-		})
-
-	});
-}
-
-export function loadIpReputationsData(startDate, endDate, sensorId) {
-
-	return new Promise((resolve, reject) => {
-
-		resolve({
-			'lstIPReputations': List([{
-				"name": "123 " + Math.random(),
-				"flag": "In"
-			}])
-		})
-
-	});
-}
-
-export function loadBandwidthData(startDate, endDate, sensorId) {
-
-	return new Promise((resolve, reject) => {
-
-		resolve({
-			'lstBandwidth': List([{
-				"count": Math.floor(Math.random() * (100 - 0 + 1) + 0),
-				"label": "cpu " + Math.random().toFixed(1),
-			}])
-		})
-
-	});
-}
 
 export function loadCpuData(startDate, endDate, sensorId) {
-
 
 	return new Promise((resolve, reject) => {
 

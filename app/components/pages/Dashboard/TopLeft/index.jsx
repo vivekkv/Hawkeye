@@ -9,22 +9,21 @@ export default class Topleft extends React.Component {
 
     render() {
 
-        var dataSet = this.props.data.get("lstRecentFiles").reverse().slice(0, 30);
+        var dataSet = this.props.data.get("lstRecentFiles");
 
         return <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 hwy-yellow-card-header" id="hwy-recent-signatures-container">
 
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="hwy-recent-file-activity">
                 <div className="hwy-card">
-                    <h4>
-                        <i className="fa fa-file"></i>
-                        Recent File activity ticks</h4>
+                    
+                    <h4><i className="fa fa-file"></i>Recent File activity ticks</h4>
                     <span className="hwy-border-ylow-bottom"></span>
 
                     <ul id="hwy-recent-file-activity-list" className="hwy-animated-list hwy-random-item-animated-list">
                         {
-                            dataSet.map((i) => {
+                            dataSet.map((i, index) => {
 
-                                return <li key={i.logTime}>
+                                return <li key={index}>
                                     <div className="hwy-info-container">
                                         <span className="hwy-li-name">{i.userName}</span>
                                         <span className="hwy-li-action">{i.action}, &nbsp;</span>
@@ -34,37 +33,6 @@ export default class Topleft extends React.Component {
                                 </li>
                             })
                         }
-
-                        {/* <li>
-                        <span>asdfsdf</span>
-                        <span className="hwy-run-animated-circle"></span>
-                     </li>
-
-                       <li>
-                        <span>asdfsdf</span>
-                        <span className="hwy-run-animated-circle"></span>
-                     </li>
-
-                       <li>
-                        <span>asdfsdf</span>
-                        <span className="hwy-run-animated-circle"></span>
-                     </li>
-
-                       <li>
-                        <span>asdfsdf</span>
-                        <span className="hwy-run-animated-circle"></span>
-                     </li>
-
-                       <li>
-                        <span>asdfsdf</span>
-                        <span className="hwy-run-animated-circle"></span>
-                     </li>
-
-                       <li>
-                        <span>asdfsdf</span>
-                        <span className="hwy-run-animated-circle"></span>
-                     </li> */}
-
                     </ul>
                 </div>
             </div>
@@ -73,7 +41,7 @@ export default class Topleft extends React.Component {
 
     animateList() {
 
-        let max = this.props.data.get("lstRecentFiles").size;
+        let max = 5;
         let width = $("#hwy-recent-signatures-container").width() - 40;
         let min = 0;
 
@@ -83,7 +51,7 @@ export default class Topleft extends React.Component {
         ele.show();
         ele.css({ "width": "5px", "height": "5px" });
 
-        ele.animate({ 'margin-left': width }, 2000, function () {
+        ele.animate({ 'margin-left': width }, 1000, function () {
             ele.remove();
         });
     }

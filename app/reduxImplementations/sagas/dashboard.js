@@ -93,18 +93,6 @@ function* loadBandWidth() {
     }
 }
 
-function* loadGlobalData() {
-
-    while (true) {
-
-        const { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_GLOBE_DATA);
-        let formData = yield select(getStateData);
-        let response = yield call(loadGlobeData, startDate, endDate, sensorId, workspaceId);
-        let newList = formData.get("lstGlobeData").concat(response.lstGlobeData);
-        yield put(createActionType(SET_FORM, { 'data': { 'lstGlobeData': newList.reverse().slice(0, 30) } }));
-    }
-}
-
 function* loadCpu() {
 
     while (true) {
@@ -113,7 +101,37 @@ function* loadCpu() {
         let formData = yield select(getStateData);
         let response = yield call(loadCpuData, startDate, endDate, sensorId, workspaceId);
         let newList = response.lstCpu.concat(formData.get("lstCpu"));
-        yield put(createActionType(SET_FORM, { 'data': { 'lstCpu': newList } }));
+        yield put(createActionType(SET_FORM, { 'data': { 'lstCpu': newList.reverse().slice(0, LIMIT) } }));
+    }
+}
+
+function* loadRecentProcess() {
+
+    while (true) {
+
+        const { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_RECENT_PROCESS);
+        let formData = yield select(getStateData);
+        let response = yield call(loadRecentProcessData, workspaceId, startDate, endDate, sensorId);
+        let newList = response.lstRecentProcess.concat(formData.get("lstRecentProcess"));
+        yield put(createActionType(SET_FORM, { 'data': { 'lstRecentProcess': newList.reverse().slice(0, LIMIT) } }));
+    }
+}
+
+function* loadGlobalData() {
+
+    while (true) {
+
+        let { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_GLOBE_DATA);
+        let formData = yield select(getStateData);
+
+        startDate = 1491552394;      
+        endDate = 1523088394;
+        
+        workspaceId = "workspace_140f8fe0";
+
+        let response = yield call(loadGlobeData, workspaceId, startDate, endDate, sensorId);
+        let newList = formData.get("lstGlobeData").concat(response.lstGlobeData);
+        yield put(createActionType(SET_FORM, { 'data': { 'lstGlobeData': newList.reverse().slice(0, 30) } }));
     }
 }
 
@@ -126,18 +144,6 @@ function* loadDiskOs() {
         let response = yield call(loadDiskOsData, startDate, endDate, sensorId, workspaceId);
         let newList = response.lstDiskOs.concat(formData.get("lstDiskOs"));
         yield put(createActionType(SET_FORM, { 'data': { 'lstDiskOs': newList } }));
-    }
-}
-
-function* loadRecentProcess() {
-
-    while (true) {
-
-        const { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_RECENT_PROCESS);
-        let formData = yield select(getStateData);
-        let response = yield call(loadRecentProcessData, startDate, endDate, sensorId, workspaceId);
-        let newList = response.lstRecentProcess.concat(formData.get("lstRecentProcess"));
-        yield put(createActionType(SET_FORM, { 'data': { 'lstRecentProcess': newList } }));
     }
 }
 
@@ -160,12 +166,13 @@ function* refreshDashboard() {
         yield put(createActionType(LOAD_IP_REPUTATIONS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
         yield put(createActionType(LOAD_RESOURCES, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
         yield put(createActionType(LOAD_BANDWIDTH, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_RECENT_PROCESS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_GLOBE_DATA, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
         
         
-        // yield put(createActionType(LOAD_GLOBE_DATA, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        
         // yield put(createActionType(LOAD_CPU, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
         // yield put(createActionType(LOAD_DISK_OS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
-        // yield put(createActionType(LOAD_RECENT_PROCESS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
 
         let nwStartDate = endDate.clone();
         let nwEndDate = endDate.add(1, 'seconds');
@@ -181,7 +188,7 @@ export default function* deviceSagas() {
         fork(loadApplications),
         fork(loadIpRepucations),
         fork(loadBandWidth),
-        fork(loadCpu),
+        //fork(loadCpu),
         fork(loadDiskOs),
         fork(loadRecentProcess),
         fork(refreshDashboard),

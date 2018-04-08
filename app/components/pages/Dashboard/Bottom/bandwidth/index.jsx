@@ -7,7 +7,6 @@ export default class Bandwidth extends React.Component {
 
         var dataSet = this.props.data.get("lstBandwidth").reverse().slice(0, 30).map((i) => { return Number(i.speed) }).toArray();
 
-        debugger
         const data = {
             labels: [],
             datasets: [

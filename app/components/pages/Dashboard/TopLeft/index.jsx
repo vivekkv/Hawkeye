@@ -11,11 +11,13 @@ export default class Topleft extends React.Component {
 
         var dataSet = this.props.data.get("lstRecentFiles");
 
+        let colors = [, "red", "#ffcc00"]
+
         return <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 hwy-yellow-card-header" id="hwy-recent-signatures-container">
 
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="hwy-recent-file-activity">
                 <div className="hwy-card">
-                    
+
                     <h4><i className="fa fa-file"></i>Recent File activity ticks</h4>
                     <span className="hwy-border-ylow-bottom"></span>
 
@@ -25,7 +27,7 @@ export default class Topleft extends React.Component {
 
                                 return <li key={index}>
                                     <div className="hwy-info-container">
-                                        <span className="hwy-li-name">{i.userName}</span>
+                                        <p className="hwy-li-name" title={i.userName} style={{ "background": this.getBackground(i.action) }}>{i.userName}</p>
                                         <span className="hwy-li-action">{i.action}, &nbsp;</span>
                                         <p className="hwy-li-file" title={i.fileName}>{i.fileName}</p>
                                     </div>
@@ -37,6 +39,19 @@ export default class Topleft extends React.Component {
                 </div>
             </div>
         </div>
+    }
+
+    getBackground(action) {
+
+        switch (action) {
+            case "Created":
+                return "#07e607"
+            case "Accessed":
+                return "#ffcc00"
+            case "Rename":  
+                return "red"
+        }
+
     }
 
     animateList() {

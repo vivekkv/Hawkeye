@@ -9,10 +9,7 @@ export default class Topleft extends React.Component {
 
     render() {
 
-        var dataSet = this.props.data.get("lstRecentFiles");
-
-        let colors = [, "red", "#ffcc00"]
-
+        let colors = ["#07e607", "#ffcc00", "red"]
         return <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 hwy-yellow-card-header" id="hwy-recent-signatures-container">
 
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="hwy-recent-file-activity">
@@ -23,7 +20,7 @@ export default class Topleft extends React.Component {
 
                     <ul id="hwy-recent-file-activity-list" className="hwy-animated-list hwy-random-item-animated-list">
                         {
-                            dataSet.map((i, index) => {
+                            this.props.data.get("lstRecentFiles").map((i, index) => {
 
                                 return <li key={index}>
                                     <div className="hwy-info-container">
@@ -59,29 +56,41 @@ export default class Topleft extends React.Component {
         let max = 5;
         let width = $("#hwy-recent-signatures-container").width() - 40;
         let min = 0;
-
         let index = Math.floor(Math.random() * (max - min + 1)) + min;
         let ele = $(".hwy-run-animated-circle").eq(index);
-
         ele.show();
         ele.css({ "width": "5px", "height": "5px" });
-
         ele.animate({ 'margin-left': width }, 1000, function () {
             ele.remove();
         });
     }
 
+    componentDidMount() {
+
+        setInterval(() => {
+
+            let circleElemets = $(".hwy-run-animated-circle").slice(0, 5);
+
+            circleElemets.show();
+
+        }, 1000);
+
+    }
+
     componentDidUpdate() {
 
-        if ($(".hwy-run-animated-circle").length >= 5) {
+        // if ($(".hwy-run-animated-circle").length >= 1) {
 
-            let animate = this.animateList;
-            setTimeout(function () {
 
-                animate();
 
-            }, 2000)
 
-        }
+        //     let animate = this.animateList;
+        //     setTimeout(function () {
+
+        //         animate();
+
+        //     }, 2000)
+
+        // }
     }
 }

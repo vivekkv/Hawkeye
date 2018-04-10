@@ -13,7 +13,7 @@ function createGlobe() {
     let height = $("#hwy-comm-globe").height();
 
     globe = new ENCOM.Globe(width - 50, height - 50, {
-       // font: "18px arial, sans-serif;",
+        //font: "22px arial, sans-serif;",
         data: newData, // copy the data array
         tiles: grid.tiles,
        // baseColor: "#ed0b0b",
@@ -76,25 +76,12 @@ function start() {
     }
 }
 
-function updateGlobe(data) {
+function addPinToGlobe(data) {
 
-    setTimeout(function () {
+    if (!globe) {
+        return;
+    }
     
-        if (!globe) {
-            return;
-        }
-
-        data.forEach((i) => {
-
-            globe.addPin(i.lat, i.long, i.signature);
-        });
-
-        // var lat = Math.random() * 180 - 90,
-        //     lon = Math.random() * 360 - 180,
-        //     name = "Test " + Math.floor(Math.random() * 100);
-
-        // globe.addPin(lat, lon, name);
-
-    }, 5000);
+    globe.addPin(data.lat, data.long, data.signature);
 }
 

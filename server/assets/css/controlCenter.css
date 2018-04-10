@@ -3,7 +3,7 @@ html {
     background: gray url(https://ak3.picdn.net/shutterstock/videos/16018183/thumb/1.jpg) repeat 0 0;
     text-align: center;
     box-sizing: border-box;
-    -webkit-animation: slide 30s linear infinite;
+    -webkit-animation: slide 60s linear infinite;
     font-family: "Poppins"
 }
 
@@ -15,7 +15,7 @@ html {
     top: 0;
     border: 2px solid #39fff0;
     border-radius: 5px;
-    margin: 10px;
+    margin: 5px;
     overflow: hidden;
 }
 
@@ -279,9 +279,16 @@ html {
     text-align: center;
 }
 
-#hwy-recent-file-activity-list li .hwy-info-container .hwy-li-action {}
-
 #hwy-recent-file-activity-list li .hwy-info-container .hwy-li-file {
     display: inline-block;
     margin: 0;
 }
+
+@keyframes .slide {
+    0%{
+      transform: translate3d(0, 0, 0);
+    }
+    100%{
+      transform: translate3d(-1692px, 0, 0);
+    }
+  }

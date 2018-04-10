@@ -137,9 +137,9 @@ export function loadResource(workspaceId, startDate, endDate, sensorId) {
 
 					return {
 						name: i,
-						cpuAverage : average("cpuUsage"),
-						diskTransfer : average("diskTransfer"),
-						freeMemory : average("freeMemory")
+						cpuAverage: average("cpuUsage"),
+						diskTransfer: average("diskTransfer"),
+						freeMemory: average("freeMemory")
 					}
 				}).value();
 
@@ -247,27 +247,22 @@ export function loadGlobeData(workspaceId, startDate, endDate, sensorId) {
 			}
 		}).then((response) => {
 
-			debugger
-			// resolve({
-			// 	'lstGlobeData': List([{
-			// 		"signature": 'Dummy file' + Math.random(),
-			// 		'latitude': "123",
-			// 		"longitude": "123",
-			// 		"severity": "high",
-			// 		"country": "india",
-			// 		"lat": "",
-			// 		"long": "",
-			// 		"city": "",
-			// 		"mac": Math.random(),
-			// 		"ip": "127.1.2.1",
-			// 		"code": "flag-icon flag-icon-eng"
-			// 	}])
-			// })
+			if (response.completed && Array.isArray(response.data)) {
 
-			resolve({
-				'lstGlobeData': List(response.data)
-			});
-		})
+				response.data.forEach((i) => {
+					i.marked = false;
+				})
+
+				resolve({
+					'lstGlobeData': List(response.data)
+				});
+			} else {
+
+				resolve({
+					'lstGlobeData': List([])
+				});
+			}
+		});
 	});
 }
 

@@ -26,7 +26,7 @@ function* loadRecentFiles() {
 
         let response = yield call(loadRecentFilesData, workspaceId, startDate, endDate, sensorId);
         let newList = formData.get("lstRecentFiles").concat(response.lstRecentFiles);
-        yield put(createActionType(SET_FORM, { 'data': { 'lstRecentFiles': newList.reverse().slice(0, LIMIT) } }));
+        yield put(createActionType(SET_FORM, { 'data': { 'lstRecentFiles': newList.slice(0, LIMIT) } }));
     }
 }
 
@@ -43,7 +43,7 @@ function* loadWebsites() {
 
         let response = yield call(loadWebsiteData, workspaceId, startDate, endDate, sensorId);
         let newList = formData.get("lstWebsites").concat(response.lstWebsites);
-        yield put(createActionType(SET_FORM, { 'data': { 'lstWebsites': newList.reverse().slice(0, LIMIT) } }));
+        yield put(createActionType(SET_FORM, { 'data': { 'lstWebsites': newList.slice(0, LIMIT) } }));
     }
 }
 
@@ -55,7 +55,7 @@ function* loadIpRepucations() {
         let formData = yield select(getStateData);
         let response = yield call(loadIpReputationsData, workspaceId, startDate, endDate, sensorId);
         let newList = formData.get("lstIPReputations").concat(response.lstIPReputations);
-        yield put(createActionType(SET_FORM, { 'data': { 'lstIPReputations': newList.reverse().slice(0, LIMIT) } }));
+        yield put(createActionType(SET_FORM, { 'data': { 'lstIPReputations': newList.slice(0, LIMIT) } }));
     }
 }
 
@@ -67,7 +67,7 @@ function* loadResources() {
         let formData = yield select(getStateData);
         let response = yield call(loadResource, workspaceId, startDate, endDate, sensorId);
         let newList = formData.get("lstResources").concat(response.lstResources);
-        yield put(createActionType(SET_FORM, { 'data': { 'lstResources': newList.reverse().slice(0, LIMIT) } }));
+        yield put(createActionType(SET_FORM, { 'data': { 'lstResources': newList.slice(0, LIMIT) } }));
     }
 }
 
@@ -79,7 +79,7 @@ function* loadBandWidth() {
         let formData = yield select(getStateData);
         let response = yield call(loadBandwidthData, workspaceId, startDate, endDate, sensorId);
         let newList = response.lstBandwidth.concat(formData.get("lstBandwidth"));
-        yield put(createActionType(SET_FORM, { 'data': { 'lstBandwidth': newList.reverse().slice(0, LIMIT) } }));
+        yield put(createActionType(SET_FORM, { 'data': { 'lstBandwidth': newList.slice(0, LIMIT) } }));
     }
 }
 
@@ -91,7 +91,7 @@ function* loadRecentProcess() {
         let formData = yield select(getStateData);
         let response = yield call(loadRecentProcessData, workspaceId, startDate, endDate, sensorId);
         let newList = response.lstRecentProcess.concat(formData.get("lstRecentProcess"));
-        yield put(createActionType(SET_FORM, { 'data': { 'lstRecentProcess': newList.reverse().slice(0, LIMIT) } }));
+        yield put(createActionType(SET_FORM, { 'data': { 'lstRecentProcess': newList.slice(0, LIMIT) } }));
     }
 }
 
@@ -102,8 +102,16 @@ function* loadGlobalData() {
         let { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_GLOBE_DATA);
         let formData = yield select(getStateData);
         let response = yield call(loadGlobeData, workspaceId, startDate, endDate, sensorId);
-        let newList = formData.get("lstGlobeData").concat(response.lstGlobeData);
-        yield put(createActionType(SET_FORM, { 'data': { 'lstGlobeData': newList.reverse().slice(0, 30) } }));
+
+        let formGlobeData = formData.get("lstGlobeData");
+
+        debugger
+        formGlobeData.forEach((i) => {
+            i.marked = true;
+        });
+
+        let newList = response.lstGlobeData.concat(formGlobeData);
+        yield put(createActionType(SET_FORM, { 'data': { 'lstGlobeData': newList.slice(0, LIMIT) } }));
     }
 }
 

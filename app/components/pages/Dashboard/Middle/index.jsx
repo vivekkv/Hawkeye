@@ -4,8 +4,6 @@ export default class Middle extends React.Component {
 
     render() {
 
-        console.log(this.props.data.get("lstGlobeData").toArray())
-
         return <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 hwy-yellow-card-header" id="hwy-comm-globe-container">
 
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="hwy-comm-globe">
@@ -62,10 +60,11 @@ export default class Middle extends React.Component {
 
     componentDidUpdate() {
 
-        //let data = this.props.data.get("lstGlobeData").toArray();
-        // setTimeout(() => {
-        //     updateGlobe(data);
-        // }, 2000)
+        let data = this.props.data.get("lstGlobeData").filter(p=> p.marked == false);
+
+        data.forEach((g) => {
+            addPinToGlobe(g);
+        });
     }
 
     componentDidMount() {

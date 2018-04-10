@@ -31060,7 +31060,10 @@
 	
 		// Parameters 
 	
-		parameters = parameters || {};
+		parameters = parameters || {
+			size :  "25px",
+			font: "Poopins"
+		};
 	
 		var size = parameters.size !== undefined ? parameters.size : 100;
 		var curveSegments = parameters.curveSegments !== undefined ? parameters.curveSegments: 4;
@@ -41986,7 +41989,7 @@
 		this.active = true;
 	
 		var defaults = {
-			font: "Inconsolata",
+			font: "Poppins",
 			baseColor: "#ffcc00",
 			markerColor: "#ffcc00",
 			pinColor: "#00eeee",
@@ -42394,8 +42397,8 @@
 			lineWidth: 1,
 			markerColor: "#FFCC00",
 			labelColor: "#FFF",
-			font: "Inconsolata",
-			fontSize: 20,
+			font: "Poppins",
+			fontSize: 30,
 			drawTime: 2000,
 			lineSegments: 150
 		}
@@ -42651,7 +42654,7 @@
 			topColor: "#8FD8D8",
 			smokeColor: "#FFF",
 			labelColor: "#FFF",
-			font: "Inconsolata",
+			font: "Poppins",
 			showLabel: (text.length > 0),
 			showTop: (text.length > 0),
 			showSmoke: (text.length > 0)
@@ -42704,7 +42707,7 @@
 	
 		/* the label */
 	
-		labelCanvas = utils.createLabel(text, 18, opts.labelColor, opts.font);
+		labelCanvas = utils.createLabel(text, 35, opts.labelColor, "Poppins");
 		labelTexture = new THREE.Texture(labelCanvas);
 		labelTexture.needsUpdate = true;
 	

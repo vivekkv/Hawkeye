@@ -4,6 +4,8 @@ export default class Middle extends React.Component {
 
     render() {
 
+        console.log(this.props.data.get("lstGlobeData").toArray())
+
         return <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 hwy-yellow-card-header" id="hwy-comm-globe-container">
 
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="hwy-comm-globe">
@@ -32,11 +34,16 @@ export default class Middle extends React.Component {
                         </thead>
                         <tbody>
                             {
-                                this.props.data.get("lstGlobeData").reverse().slice(0, 30).map((map) => {
+                                this.props.data.get("lstGlobeData").map((map) => {
 
                                     return <tr>
-                                        <td>{map.severity}</td>
-                                        <td>{map.mac_address}</td>
+                                        <td>{
+                                            map.severity == 1 ? 
+                                                "High" : map.severity == 2 ? 
+                                                "Medium" : map.severity == 3 ? 
+                                                "Low" : ""
+                                        }</td>
+                                        <td>{map.mac}</td>
                                         <td>{map.country}</td>
                                         <td>{map.city}</td>
                                         <td>{map.ip}</td>
@@ -53,16 +60,21 @@ export default class Middle extends React.Component {
         </div>
     }
 
-    componentDidMount() {
-        if (!Detector.webgl) {
+    componentDidUpdate() {
 
+        //let data = this.props.data.get("lstGlobeData").toArray();
+        // setTimeout(() => {
+        //     updateGlobe(data);
+        // }, 2000)
+    }
+
+    componentDidMount() {
+
+        if (!Detector.webgl) {
             console.log("WEBGL not found !.")
             Detector.addGetWebGLMessage({ parent: document.getElementById("hwy-container") });
-
         } else {
-
             createGlobe();
         }
     }
-
 }

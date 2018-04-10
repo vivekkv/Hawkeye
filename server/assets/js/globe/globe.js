@@ -7,7 +7,7 @@ function createGlobe() {
     globeCount++;
 
     $("#globe canvas").remove();
-    newData = data.slice();
+    newData = []// data.slice();
 
     var width = $("#hwy-comm-globe").width();
     let height = $("#hwy-comm-globe").height();
@@ -60,7 +60,7 @@ function start() {
 
         animate();
 
-        // /* add pins at random locations */
+        /* add pins at random locations */
         // setInterval(function () {
         //     if (!globe) {
         //         return;
@@ -74,5 +74,27 @@ function start() {
 
         // }, 5000);
     }
+}
+
+function updateGlobe(data) {
+
+    setTimeout(function () {
+    
+        if (!globe) {
+            return;
+        }
+
+        data.forEach((i) => {
+
+            globe.addPin(i.lat, i.long, i.signature);
+        });
+
+        // var lat = Math.random() * 180 - 90,
+        //     lon = Math.random() * 360 - 180,
+        //     name = "Test " + Math.floor(Math.random() * 100);
+
+        // globe.addPin(lat, lon, name);
+
+    }, 5000);
 }
 

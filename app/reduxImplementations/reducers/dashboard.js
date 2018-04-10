@@ -6,15 +6,13 @@ import moment from 'moment';
 var initialState = fromJS({
     'lstRecentFiles': List([]),
     'lstGlobeData': List([]),
-    'lstApplications': List([]),
+    'lstWebsites': List([]),
     'lstIPReputations': List([]),
     'lstBandwidth': List([]),
-    'lstCpu': List([]),
-    'lstDiskOs': List([]),
     'lstRecentProcess': List([]),
     'lstResources': List([]),
-    'startDate': moment.unix(1503365520),// moment("2017-08-21T00:00:00", "YYYY-MM-DDThh:mm:ss").subtract(10, 'seconds'),  
-    'endDate': moment.unix(1503366661),//moment("2017-08-21T00:00:00", "YYYY-MM-DDThh:mm:ss").add(10, "seconds"),  
+    'startDate': moment.unix(1523232000),// moment("2017-08-21T00:00:00", "YYYY-MM-DDThh:mm:ss").subtract(10, 'seconds'),  
+    'endDate': moment.unix(1523298163),//moment("2017-08-21T00:00:00", "YYYY-MM-DDThh:mm:ss").add(10, "seconds"),  
     'workspaceId': "",
     'sensorId': ""
 });

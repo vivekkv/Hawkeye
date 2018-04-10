@@ -5,28 +5,20 @@ export default class Bandwidth extends React.Component {
 
     render() {
 
-        var dataSet = this.props.data.get("lstBandwidth").reverse().slice(0, 30).map((i) => { return Number(i.speed) }).toArray();
+        var dataSet = this.props.data.get("lstBandwidth").reverse().slice(0, 10).map((i) => { return Number(i.speed) / (1024 * 1024)  }).toArray();
 
         const data = {
             labels: [],
             datasets: [
-                {
+                 {
                     lineTension: 0,
-                    label: '',
-                    // fill: false,
-                    // lineTension: 0.1,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
+                    label: 'Bandwidth (MB)',
+                    backgroundColor: '',
+                    borderColor: 'green',
                     borderCapStyle: 'butt',
-                    // borderDash: [],
-                    // borderDashOffset: 0.0,
-                    // borderJoinStyle: 'miter',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    // pointBackgroundColor: '#fff',
-                    // pointBorderWidth: 1,
-                    // pointHoverRadius: 5,
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
+                    pointBorderColor: 'green',
+                    pointHoverBackgroundColor: 'green',
+                    pointHoverBorderColor: 'green',
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 1,
@@ -37,15 +29,15 @@ export default class Bandwidth extends React.Component {
             ]
         };
 
-        for (let i = 0; i < 40; i++) {
-            data.labels.push("");
+        for (let i = 0; i < 10; i++) {
+            data.labels.push(i);
         }
 
         return <div className="col-xs-3 col-lg-3 col-md-3 col-sm-3 hwy-yellow-card-header" id="hwy-network-bandwith-chart">
 
             <div className="hwy-card">
                 <h4>
-                    <i className="fa fa-bars"></i>Bandwidth chart</h4>
+                    <i className="fa fa-bars"></i>Bandwidth </h4>
 
                 <span className="hwy-border-ylow-bottom"></span>
 

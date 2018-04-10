@@ -40,7 +40,7 @@ class Dashboard extends React.Component {
 
             refreshDashboard();
 
-        }, 1000)
+        }, 5000)
     }
 
 }

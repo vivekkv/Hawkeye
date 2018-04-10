@@ -31,7 +31,7 @@ html {
     color: #fff;
     border-bottom: 1px solid #00EEEE;
     padding: 10px;
-    font-weight: 600;
+    font-weight: normal;
     border-right: 2px solid #00EEEE;
     margin: 0;
     font-size: 13px;
@@ -189,16 +189,23 @@ html {
 .hwy-globe-signature-table thead {
     background: #101e1d;
     border-top: 3px solid #eabb00;
-    border-bottom: 1px solid #eabb00
+    border-bottom: 1px solid #eabb00;
+    text-align: left;
 }
 
 .hwy-globe-signature-table thead td {
-    text-transform: uppercase
+    text-transform: uppercase;
+    padding-left: 5px
 }
 
 .hwy-globe-signature-table tbody tr:nth-child(even) {
     background: #2b2a25;
     color: #6fc0ba
+}
+
+.hwy-globe-signature-table tbody tr td {
+    text-align: left;
+    padding-left: 5px
 }
 
 .hwy-globe-table-wrapper {

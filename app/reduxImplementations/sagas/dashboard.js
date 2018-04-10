@@ -1,11 +1,11 @@
 import { take, call, put, select, fork } from 'redux-saga/effects';
 import { Map, List } from 'immutable';
 import {
-    INPUT_CHANGE, SET_FORM, LOAD_RECENT_FILES, LOAD_GLOBE_DATA, LOAD_APPLICATIONS, LOAD_IP_REPUTATIONS, LOAD_BANDWIDTH, LOAD_CPU,
-    LOAD_DISK_OS, LOAD_RECENT_PROCESS, REFRESH_DASHBOARD, LOAD_RESOURCES
+    INPUT_CHANGE, SET_FORM, LOAD_RECENT_FILES, LOAD_GLOBE_DATA, LOAD_APPLICATIONS, LOAD_IP_REPUTATIONS, LOAD_BANDWIDTH, 
+    LOAD_RECENT_PROCESS, REFRESH_DASHBOARD, LOAD_RESOURCES, LOAD_WEBSITES
 } from '../constants/dashboard';
 import { loadRecentFilesData, loadGlobeData, loadApplicationsData, loadIpReputationsData, loadBandwidthData, loadCpuData, loadDiskOsData, loadRecentProcessData,
-    loadResource } from '../services/dashboard';
+    loadResource, loadWebsiteData } from '../services/dashboard';
 import { createActionType } from '../actionBuilder';
 import { getWorkspaceId } from 'utils/authRegistry';
 
@@ -20,9 +20,9 @@ function* loadRecentFiles() {
         let { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_RECENT_FILES);
         let formData = yield select(getStateData);
 
-        workspaceId = "workspace_56beb2ae";
-        startDate = 1503365520;
-        endDate = 1503366661;
+        workspaceId = "workspace_310af574";
+        startDate = 1520615777;
+        endDate = 1520674263;
 
         let response = yield call(loadRecentFilesData, workspaceId, startDate, endDate, sensorId);
         let newList = formData.get("lstRecentFiles").concat(response.lstRecentFiles);
@@ -30,20 +30,20 @@ function* loadRecentFiles() {
     }
 }
 
-function* loadApplications() {
+function* loadWebsites() {
 
     while (true) {
 
-        let { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_APPLICATIONS);
+        let { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_WEBSITES);
         let formData = yield select(getStateData);
 
         workspaceId = "workspace_fdd2616a";
-        startDate = 1521472881;
-        endDate = 1521472881;
+        startDate = 1520615777;
+        endDate = 1523294177;
 
-        let response = yield call(loadApplicationsData, workspaceId, startDate, endDate, sensorId);
-        let newList = formData.get("lstApplications").concat(response.lstApplications);
-        yield put(createActionType(SET_FORM, { 'data': { 'lstApplications': newList.reverse().slice(0, LIMIT) } }));
+        let response = yield call(loadWebsiteData, workspaceId, startDate, endDate, sensorId);
+        let newList = formData.get("lstWebsites").concat(response.lstWebsites);
+        yield put(createActionType(SET_FORM, { 'data': { 'lstWebsites': newList.reverse().slice(0, LIMIT) } }));
     }
 }
 
@@ -51,7 +51,7 @@ function* loadIpRepucations() {
 
     while (true) {
 
-        const { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_IP_REPUTATIONS);
+        let { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_IP_REPUTATIONS);
         let formData = yield select(getStateData);
         let response = yield call(loadIpReputationsData, workspaceId, startDate, endDate, sensorId);
         let newList = formData.get("lstIPReputations").concat(response.lstIPReputations);
@@ -65,11 +65,6 @@ function* loadResources() {
 
         let { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_RESOURCES);
         let formData = yield select(getStateData);
-
-        workspaceId = "workspace_fdd2616a";
-        startDate = 1522094048;
-        endDate = 1522094078;
-
         let response = yield call(loadResource, workspaceId, startDate, endDate, sensorId);
         let newList = formData.get("lstResources").concat(response.lstResources);
         yield put(createActionType(SET_FORM, { 'data': { 'lstResources': newList.reverse().slice(0, LIMIT) } }));
@@ -82,26 +77,9 @@ function* loadBandWidth() {
 
         let { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_BANDWIDTH);
         let formData = yield select(getStateData);
-
-        workspaceId = "workspace_fdd2616a";
-        startDate = 1522094049;
-        endDate = 1522094254;
-
         let response = yield call(loadBandwidthData, workspaceId, startDate, endDate, sensorId);
         let newList = response.lstBandwidth.concat(formData.get("lstBandwidth"));
         yield put(createActionType(SET_FORM, { 'data': { 'lstBandwidth': newList.reverse().slice(0, LIMIT) } }));
-    }
-}
-
-function* loadCpu() {
-
-    while (true) {
-
-        const { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_CPU);
-        let formData = yield select(getStateData);
-        let response = yield call(loadCpuData, startDate, endDate, sensorId, workspaceId);
-        let newList = response.lstCpu.concat(formData.get("lstCpu"));
-        yield put(createActionType(SET_FORM, { 'data': { 'lstCpu': newList.reverse().slice(0, LIMIT) } }));
     }
 }
 
@@ -109,7 +87,7 @@ function* loadRecentProcess() {
 
     while (true) {
 
-        const { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_RECENT_PROCESS);
+        let { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_RECENT_PROCESS);
         let formData = yield select(getStateData);
         let response = yield call(loadRecentProcessData, workspaceId, startDate, endDate, sensorId);
         let newList = response.lstRecentProcess.concat(formData.get("lstRecentProcess"));
@@ -123,35 +101,19 @@ function* loadGlobalData() {
 
         let { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_GLOBE_DATA);
         let formData = yield select(getStateData);
-
-        startDate = 1491552394;      
-        endDate = 1523088394;
-        
-        workspaceId = "workspace_140f8fe0";
-
         let response = yield call(loadGlobeData, workspaceId, startDate, endDate, sensorId);
         let newList = formData.get("lstGlobeData").concat(response.lstGlobeData);
         yield put(createActionType(SET_FORM, { 'data': { 'lstGlobeData': newList.reverse().slice(0, 30) } }));
     }
 }
 
-function* loadDiskOs() {
-
-    while (true) {
-
-        const { startDate, endDate, sensorId, workspaceId } = yield take(LOAD_DISK_OS);
-        let formData = yield select(getStateData);
-        let response = yield call(loadDiskOsData, startDate, endDate, sensorId, workspaceId);
-        let newList = response.lstDiskOs.concat(formData.get("lstDiskOs"));
-        yield put(createActionType(SET_FORM, { 'data': { 'lstDiskOs': newList } }));
-    }
-}
 
 function* refreshDashboard() {
 
     while (true) {
 
         yield take(REFRESH_DASHBOARD);
+
         let formData = yield select(getStateData);
         let startDate = formData.get("startDate");
         let endDate = formData.get("endDate");
@@ -161,21 +123,16 @@ function* refreshDashboard() {
         let stUnix = startDate.unix();
         let endUnix = endDate.unix();
 
-        yield put(createActionType(LOAD_RECENT_FILES, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
-        yield put(createActionType(LOAD_APPLICATIONS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
-        yield put(createActionType(LOAD_IP_REPUTATIONS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
         yield put(createActionType(LOAD_RESOURCES, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_RECENT_FILES, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_WEBSITES, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
         yield put(createActionType(LOAD_BANDWIDTH, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
-        yield put(createActionType(LOAD_RECENT_PROCESS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_IP_REPUTATIONS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
         yield put(createActionType(LOAD_GLOBE_DATA, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
-        
-        
-        
-        // yield put(createActionType(LOAD_CPU, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
-        // yield put(createActionType(LOAD_DISK_OS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
+        yield put(createActionType(LOAD_RECENT_PROCESS, { startDate : stUnix, endDate: endUnix, sensorId, workspaceId }));
 
         let nwStartDate = endDate.clone();
-        let nwEndDate = endDate.add(1, 'seconds');
+        let nwEndDate = endDate.add(5, 'seconds');
 
         yield put(createActionType(SET_FORM, { 'data': { startDate: nwStartDate, endDate: nwEndDate } }));
     }
@@ -185,11 +142,9 @@ export default function* deviceSagas() {
     yield [
         fork(loadRecentFiles),
         fork(loadGlobalData),
-        fork(loadApplications),
+        fork(loadWebsites),
         fork(loadIpRepucations),
         fork(loadBandWidth),
-        //fork(loadCpu),
-        fork(loadDiskOs),
         fork(loadRecentProcess),
         fork(refreshDashboard),
         fork(loadResources)

@@ -18,7 +18,7 @@ export default class Topleft extends React.Component {
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="hwy-recent-file-activity">
                 <div className="hwy-card">
 
-                    <h4><i className="fa fa-file"></i>Recent File activity ticks</h4>
+                    <h4><i className="fa fa-file"></i>Recent File activity</h4>
                     <span className="hwy-border-ylow-bottom"></span>
 
                     <ul id="hwy-recent-file-activity-list" className="hwy-animated-list hwy-random-item-animated-list">

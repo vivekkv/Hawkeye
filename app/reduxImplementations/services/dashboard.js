@@ -37,11 +37,11 @@ export function loadRecentFilesData(workspaceId, startDate, endDate, sensorId) {
 	});
 }
 
-export function loadApplicationsData(workspaceId, startDate, endDate, sensorId) {
+export function loadWebsiteData(workspaceId, startDate, endDate, sensorId) {
 
 	return new Promise((resolve, reject) => {
 
-		new CrudBase("hawkeye/recentApplications").request({
+		new CrudBase("beacon/websites").request({
 			'method': "POST",
 			'body': JSON.stringify({
 				'StartDate': startDate,
@@ -55,11 +55,11 @@ export function loadApplicationsData(workspaceId, startDate, endDate, sensorId) 
 
 			if (response.completed) {
 
-				resolve({ 'lstApplications': List(response.data) });
+				resolve({ 'lstWebsites': List(response.data) });
 
 			} else {
 
-				resolve({ 'lstApplications': List([]) });
+				resolve({ 'lstWebsites': List([]) });
 			}
 
 		}).catch((e) => {
@@ -74,7 +74,7 @@ export function loadIpReputationsData(workspaceId, startDate, endDate, sensorId)
 
 	return new Promise((resolve, reject) => {
 
-		new CrudBase("hawkeye/recentApplications").request({
+		new CrudBase("beacon/ssh").request({
 			'method': "POST",
 			'body': JSON.stringify({
 				'StartDate': startDate,
@@ -121,7 +121,32 @@ export function loadResource(workspaceId, startDate, endDate, sensorId) {
 
 			if (response.completed) {
 
-				resolve({ 'lstResources': List(response.data) });
+				response.data[0].sensor_uuid = "abc";
+				//let groupe = _.chain(response.data).groupBy(p=> p.sensor_uuid);
+
+				debugger
+				var result = _.chain(response.data).groupBy("sensor_uuid").map(function(v, i) {
+
+					let average = (name) => {
+						let sum = 0;
+						for (let i in v) {
+							sum += Number(v[i][name])
+						}
+						return sum / v.length;
+					}
+
+					return {
+						name: i,
+						cpuAverage : average("cpuUsage"),
+						diskTransfer : average("diskTransfer"),
+						freeMemory : average("freeMemory")
+					}
+				}).value();
+
+				debugger
+
+
+				resolve({ 'lstResources': List(result) });
 
 			} else {
 
@@ -211,33 +236,37 @@ export function loadGlobeData(workspaceId, startDate, endDate, sensorId) {
 		httpRequest("https://api-beacon.apvera.com/api/v4/ip/map", {
 			'method': "POST",
 			'body': JSON.stringify({
-				'StartDate': startDate,
-				'EndDate': endDate,
-				'WorkspaceId': workspaceId,
+				'startTime': startDate,
+				'endTime': endDate,
+				'workspaceId': workspaceId,
 				'sensorId': ""
 			}),
 			'headers': {
 				'Content-Type': 'application/json',
-				'Authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NzMsImV4cCI6MTUyMzE3NDIyNSwidXNlcl9pZCI6NzMsImNsaWVudF9pZCI6MTIsImNvbnRhY3RfaWQiOjUxLCJ3b3Jrc3BhY2VfdXVpZCI6IndvcmtzcGFjZV81NmJlYjJhZSJ9.pPzs1GlAt2QR75AHZ_HehqNmqLjme29rsapMETMT-Jw"
+				'Authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NzMsImV4cCI6MTUyMzM4MzY4NiwidXNlcl9pZCI6NzMsImNsaWVudF9pZCI6MTIsImNvbnRhY3RfaWQiOjUxLCJ3b3Jrc3BhY2VfdXVpZCI6IndvcmtzcGFjZV81NmJlYjJhZSJ9.PaFmUuEd0oYD9H5_g1MPw5ToXrF2MCV_mjbz2OEScjQ"
 			}
 		}).then((response) => {
 
 			debugger
+			// resolve({
+			// 	'lstGlobeData': List([{
+			// 		"signature": 'Dummy file' + Math.random(),
+			// 		'latitude': "123",
+			// 		"longitude": "123",
+			// 		"severity": "high",
+			// 		"country": "india",
+			// 		"lat": "",
+			// 		"long": "",
+			// 		"city": "",
+			// 		"mac": Math.random(),
+			// 		"ip": "127.1.2.1",
+			// 		"code": "flag-icon flag-icon-eng"
+			// 	}])
+			// })
+
 			resolve({
-				'lstGlobeData': List([{
-					"signature": 'Dummy file' + Math.random(),
-					'latitude': "123",
-					"longitude": "123",
-					"severity": "high",
-					"country": "india",
-					"lat": "",
-					"long": "",
-					"city": "",
-					"mac": Math.random(),
-					"ip": "127.1.2.1",
-					"code": "flag-icon flag-icon-eng"
-				}])
-			})
+				'lstGlobeData': List(response.data)
+			});
 		})
 	});
 }
